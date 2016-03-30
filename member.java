@@ -3,6 +3,12 @@
  *
  * @author YENNI
  */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class member {
     private String nama_member;
     private String alamat_member;
@@ -132,5 +138,22 @@ public class member {
         }
         return true;
     }
+    
+   public void addMember(String namaM,String alamatM,String usernameM,String passwordM,int idM,int noHp,String ttl,int saldo) throws SQLException{
+        Connection c = Koneksi.getConnection();
+        String sql = "insert into Member values (?,?,?,?,?,?,?,?)";
+        PreparedStatement stmt = c.prepareStatement(sql);
+        stmt.setString(1, namaM);
+        stmt.setString(2, alamatM);
+        stmt.setString(3, usernameM);
+        stmt.setString(4, passwordM);
+        stmt.setInt(5, idM);
+        stmt.setInt(6, noHp);
+        stmt.setString(7, ttl);
+        stmt.setInt(8, saldo);
+        stmt.executeUpdate();
+    
+    }
+    
 
 }
