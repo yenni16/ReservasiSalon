@@ -6,6 +6,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -33,28 +34,43 @@ public class FilterAddSaldo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        ResultSet re;
 
-
-        String id = request.getParameter("id");
+        String username = request.getParameter("username");
         String saldo = request.getParameter("saldo");
         Member m = new Member();
 
-        if (id == null || saldo == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("");
+        if (username == null || saldo == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("TambahSaldo.jsp");
             rd.forward(request, response);
 
         } else {
             Connection con = connection.Koneksi.open();
             Statement stat = con.createStatement();
-            String query1 = "select saldo from member where id_member='" + id + "'";
+            String query1 = "select saldo from member where username='" + username + "'";
+            re = stat.executeQuery(query1);
+            int saldoAwal = 0;
+            while(re.next()) {
+//                 saldoAwal = Integer.parseInt(re.getString("saldo"));
+                saldoAwal = Integer.parseInt(re.getString("saldo"));
+            }
 
             int saldo2 = Integer.parseInt(saldo);
-            int query2 = Integer.parseInt(query1);
-            saldo2 = saldo2 + query2;
-            String query3 = "update member set saldo=" + saldo2 + " where id_member='" + id + "'";
+//            int query2 = Integer.parseInt(re.getString("saldo"));
+
+            saldo2 = saldo2 + saldoAwal;
+
+            System.out.println(saldo2);
+//            System.out.println(saldo2+" ditambah "+query2);
+            m.setSaldo_member(saldo2);
+            String query3 = "update member set saldo=" + m.getSaldo_member() + " where username='" + username + "'";
+            stat.executeUpdate(query3);
+            out.println("<html><head></head><body><h2>Saldo berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
+
+            con.close();
         }
     }
 
@@ -72,7 +88,11 @@ public class FilterAddSaldo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,7 +111,11 @@ public class FilterAddSaldo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
         }
