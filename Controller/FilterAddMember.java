@@ -58,7 +58,7 @@ m.setTgllahir_member(ttl);
         
         else {
 //         INSERT DATA MEMBER
-          Cookie ck1 = new Cookie("data1", username);
+   
 
             Member mem = new Member();
       mem.setNama_member(nama);
