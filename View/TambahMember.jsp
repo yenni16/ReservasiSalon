@@ -13,7 +13,7 @@
         <script type="applisalonion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <!-- Custom Theme files -->
-        <link href="css/style.css" rel='stylesheet' type='text/css' />	
+        <link href="css/style_1.css" rel='stylesheet' type='text/css' />	
         <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
         <link href="css/swipebox.css" rel='stylesheet' type='text/css' />
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -68,11 +68,11 @@
                         <ul class="cl-effect-16">
                             <li><a href="CS.jsp" data-hover="HOME">HOME</a></li> 
                             <li><a href="DaftarPemesanan.jsp" data-hover="Daftar Pemesanan">Daftar Pemesanan</a></li>
-                            <li><a class="active" href="TambahMember.jsp" data-hover="Tambah Member">Tambah Member</a></li>							
+                            <li><a  href="UbahStatus.jsp" data-hover="Update Status Member">Update Status Member</a></li>							
+                            <li><a class="active"  href="TambahMember.jsp" data-hover="Tambah Member">Tambah Member</a></li>							
                             <li><a href="TambahSaldo.jsp" data-hover="Tambah Saldo">Tambah Saldo</a></li>
-                              <li><a href="HalamanUtama.jsp" data-hover="Logout">Logout</a></li>
+                            <li><a href="FilterLogout" data-hover="Logout">Logout</a></li>
                         </ul>
-
                     </nav>		
                 </div>
                 <div class="clearfix"></div>
@@ -108,7 +108,6 @@
         <link rel="stylesheet" href="css/style register.css"> 
 
     </head>
-
     <div class="main">
         <div class="login-head">
             <h1>Formulir Registrasi</h1>
@@ -118,42 +117,47 @@
                 <div class="Regisration-head">
                     <h2><span></span>Register</h2>
                 </div>
-                <form>
-                    <input type="text" value="Nama Lengkap" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'Nama Lengkap';
-                                }" >
-                    <input type="text" value="Alamat" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'Alamat';
-                                }" >
-                    <input type="text" value="Tanggal Lahir" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'Tanggal Lahir';
-                                }" >
-                    <input type="text" value="ID Member" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'ID Member';
-                                }" >
-                    <input type="text" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'User Name';
-                                }" >
-                    <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'Password';
-                                }" >
-                 
-                    <input type="text" value="Saldo" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                    this.value = 'Saldo';
-                                }" >
-                    
 
-                        <div class="submit">
-                            <input type="submit" onclick="myFunction()" value="Simpan >" >
-                        </div>
-                        <div class="clear"> </div>
+                <form action="./FilterAddMember">
+                    <input type="text" name="nama" value="Nama Lengkap" onfocus="this.value = '';" onblur="if (this.value == '') {
+                        this.value = 'Nama Lengkap';
+                    }" >
+                    <input type="text" name="alamat" value="Alamat" onfocus="this.value = '';" onblur="if (this.value == '') {
+                    this.value = 'Alamat';
+                }" >
+                    <input type="text" name="username" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {
+                this.value = 'User Name';
+            }" >
+                    <input type="text" name="nohp" value="No HP" onfocus="this.value = '';" onblur="if (this.value == '') {
+            this.value = 'No HP';
+        }" >
+
+                    <input type="password" name="pw" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
+        this.value = 'Password';
+    }" >
+
+                    <input type="text" name="ttl"" value="Tanggal Lahir" onfocus="this.value = '';" onblur="if (this.value == '') {
+    this.value = 'Tanggal Lahir';
+}" >
+
+                    <input type="text" name="saldo" value="Saldo" onfocus="this.value = '';" onblur="if (this.value == '') {
+this.value = 'Saldo';
+}" >
+                    <input type="text" name="Role" value="Role" onfocus="this.value = '';" onblur="if (this.value == '') {
+this.value = 'Role';
+}" >
+                        <input type="submit" name="submit" value="Sign Up">
                     </div>
 
                 </form>
+                <div class="clear"> </div>
             </div>
 
-            <div class ="copy-right">
 
-            </div>
         </div>
+
+        <div class ="copy-right">
+
+        </div>
+    </div>
 </html>
