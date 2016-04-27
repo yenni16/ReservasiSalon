@@ -4,6 +4,9 @@
     Author     : Marcellina Fanny 
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <html>
     <head>
         <title>Halaman Member</title>
@@ -16,7 +19,7 @@
         <link href="css/styleReservasi.css" rel='stylesheet' type='text/css' />
 
         <link href="css/style.css" rel='stylesheet' type='text/css' />	
-        	
+
         <script src="js/jquery.min.js"></script>
         <!---- start-smoth-scrolling---->
         <script type="text/javascript" src="js/move-top.js"></script>
@@ -60,17 +63,18 @@
                 <div class="top-menu">
                     <nav>
                         <ul class="cl-effect-16">
-                            <li><a href="HalamanUtama.jsp" data-hover="Logout">Logout</a></li>
+                            <li><a href ="FilterLogout" data-hover="Logout">Logout</a></li>
+
                         </ul>
 
                     </nav>		
                 </div>
-                
-                
+
+
                 <div class="clearfix"></div>
-                
-       
-                
+
+
+
                 <!-- script for menu -->
                 <script>
                     $("span.menu").click(function() {
@@ -96,92 +100,127 @@
                 </script>
             </div>
         </div>
-    
-    <!--start-banner-->
-    
-    <div class="banner">
-         <div class="login">
-            <center>               
-                <h1 style = "color: black;">Saldo =  </h1></center></div>
-        <div class="container">
-            <div class="banner-top">
-                <h1>Silahkan Reservasi Online </h1>
-                <div class="banner-bottom">
-                    <div class="bnr-one">
-                        <div class="bnr-left">
-                            <p>Pilih Tanggal</p>
-                        </div>
-                        <div class="bnr-right">
-                            <input class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                            this.value = '';
-                                        }" required=>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-<div class="bnr-one">
-                        <div class="bnr-left">
-                            <p>ID Member</p>
-                        </div>
-                        <div class="bnr-right">
-                          <input type="text" placeholder="ID member" required=" ">
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                   
-                    
-                    <div class="bnr-one">
-                        <div class="bnr-left">
-                            <p>Jam Pelayanan</p>
-                        </div>
-                        <div class="bnr-right">
-                           <input type="text" placeholder="Jam Treatment" required=" ">
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    
-                    <div class="bnr-one">
-                        <div class="bnr-left">
-                            <p>Pelayanan</p>
-                        </div>
-                        <div class="bnr-right">
-                            <select>
-                                <option  class="rm" value="volvo">Pilih</option>
-                                <option  class="rm" value="saab">Rias Pengantin</option>
-                                <option  class="rm" value="opel">Rias Wisuda</option>
-                                <option  class="rm" value="audi">Rias Pengantin</option>
-                                <option  class="rm" value="audi">Potong Rambut</option>
-                                <option  class="rm" value="audi">Creambath</option>
-                                <option  class="rm" value="audi">Cuci Blow</option>
-                                <option  class="rm" value="audi">Hair Mask</option>
-                                <option  class="rm" value="audi">Rebonding</option>
-                                <option  class="rm" value="audi">Toning</option>
-                                <option  class="rm" value="audi">Colouring</option>
-                                <option  class="rm" value="audi">Bleaching</option>
-                            </select>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    
-                
-                
-                    <div class="bnr-btn">
+
+        <!--start-banner-->
+
+        <div class="banner">
+            <div class="login">
+                <center>              
+                    <%
+
+                        String s = (String) session.getAttribute("username");
+                        ResultSet re;
+
+                        Connection con = connection.Koneksi.open();
+                        Statement stat = con.createStatement();
+
+                        
+            String query1 = "select saldo from member where username='" + s + "'";
+            re = stat.executeQuery(query1);
+            int saldo = 0;
+            while(re.next()) {
+                saldo = Integer.parseInt(re.getString("saldo"));
+            }
+            
+
+                        con.close();
+
+                    %>
+                    <h1 style = "color: black;">Saldo = <%=saldo%> </h1></center></div>
+            <div class="container">
+                <div class="banner-top">
+
+                    <h1>Silahkan Reservasi Online </h1>
+                    <div class="banner-bottom">
                         <form>
-                            <input type="submit" value="Simpan">
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Pilih Tanggal</p>
+                                </div>
+                                <div class="bnr-right">
+                                    <input class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '';
+                                    }" required=>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Jam Pelayanan</p>
+                                </div>
+                                <div class="bnr-right">
+                                    <input type="text" placeholder="Jam Treatment" required=" ">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Username Member</p>
+                                </div>
+                                <div class="bnr-right">
+                                    <input type="text" placeholder="Username member" required=" " value="<%=s%>">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Id Treatment</p>
+                                </div>
+                                <div class="bnr-right">
+                                    <input type="text" placeholder="Id Treatment" required=" ">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Pelayanan</p>
+                                </div>
+                                <div class="bnr-right">
+                                    <select>
+                                        <option  class="rm" value="volvo">Pilih</option>
+                                        <option  class="rm" value="saab">Rias Pengantin</option>
+                                        <option  class="rm" value="opel">Rias Wisuda</option>
+                                        <option  class="rm" value="audi">Rias Pengantin</option>
+                                        <option  class="rm" value="audi">Potong Rambut</option>
+                                        <option  class="rm" value="audi">Creambath</option>
+                                        <option  class="rm" value="audi">Cuci Blow</option>
+                                        <option  class="rm" value="audi">Hair Mask</option>
+                                        <option  class="rm" value="audi">Rebonding</option>
+                                        <option  class="rm" value="audi">Toning</option>
+                                        <option  class="rm" value="audi">Colouring</option>
+                                        <option  class="rm" value="audi">Bleaching</option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+
+                            <div class="bnr-btn">
+                                <input type="submit" value="Simpan">
+                            </div>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--end-banner-->
-    <!---start-date-piker---->
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <script src="js/jquery-ui.js"></script>
-    <script>
-                                $(function() {
-                                    $("#datepicker,#datepicker1").datepicker();
-                                });
-    </script>
-    <!---/End-date-piker---->
-</body>
+        <!--end-banner-->
+        <!---start-date-piker---->
+        <link rel="stylesheet" href="css/jquery-ui.css" />
+        <script src="js/jquery-ui.js"></script>
+        <script>
+        $(function() {
+            $("#datepicker,#datepicker1").datepicker();
+        });
+        </script>
+        <!---/End-date-piker---->
+    </body>
 </html>
