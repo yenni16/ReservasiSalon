@@ -5,7 +5,7 @@
 --%>
 <html>
     <head>
-        <title>Halaman Customer Service</title>     
+        <title> Halaman Customer Service </title>     
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Beautyou  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -13,9 +13,9 @@
         <script type="applisalonion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <!-- Custom Theme files -->
-        <link href="css/style.css" rel='stylesheet' type='text/css' />	
-        <link href="css/styleLog.css" rel='stylesheet' type='text/css' />
-        <link href="css/styleDaftar.css" rel='stylesheet' type='text/css' />
+        <link href="css/style_1.css" rel='stylesheet' type='text/css' />	
+        
+        
         <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
         <link href="css/swipebox.css" rel='stylesheet' type='text/css' />
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -68,12 +68,14 @@ $(".swipebox").swipebox();
                 <span class="menu"> </span>
                 <div class="top-menu">
                     <nav>
+
                         <ul class="cl-effect-16">
                             <li><a href="CS.jsp" data-hover="HOME">HOME</a></li> 
                             <li><a href="DaftarPemesanan.jsp" data-hover="Daftar Pemesanan">Daftar Pemesanan</a></li>
-                            <li><a href="TambahMember.jsp" data-hover="Tambah Member">Tambah Member</a></li>							
+                            <li><a  href="UbahStatus.jsp" data-hover="Update Status Member">Update Status Member</a></li>							
+                            <li><a   href="TambahMember.jsp" data-hover="Tambah Member">Tambah Member</a></li>							
                             <li><a class="active" href="TambahSaldo.jsp" data-hover="Tambah Saldo">Tambah Saldo</a></li>
-                          <li><a href="HalamanUtama.jsp" data-hover="Logout">Logout</a></li>
+                            <li><a href="FilterLogout" data-hover="Logout">Logout</a></li>
                         </ul>
 
                     </nav>		
@@ -106,28 +108,27 @@ $(".swipebox").swipebox();
         </div>
     <head>
         <meta charset="UTF-8">
-        
+
         <link rel="stylesheet" href="css/login.css">    
-          
+        <link rel="stylesheet" href="css/style register.css"> 
 
     </head>
 
+
     <body>
-        <link rel="stylesheet" href="css/styleLog.css">
+        
 <!-- main -->
-		<div class="main">
-			<h1 style = "color: black;">Form Tambah Saldo</h1>
-			<div class="main-info">
-				<div class="main-pos">
-					<span></span>
-				</div>
-				<div class="main-info1">
-					<h3 style = "color: black;">Tambah Saldo</h3>
-					<form>
-                                                <h4>ID Member</h4>
-						<input type="text" placeholder="ID member" required=" ">
-                                                <h4>Masukan Saldo</h4>
-						<input type="text" placeholder="Masukan Saldo" required=" ">
+    <div class="main">
+        <div class="login-head">
+             </div>
+        <div  class="wrap">
+            <div class="Regisration">
+                <div class="Regisration-head">
+                    <h2><span></span>Tambah Saldo</h2>
+                </div>
+                                        <form action="FilterAddSaldo">
+                                                <input type="text" name="username" value="Username" onfocus="" onblur="" >
+                                                <input type="text" name="Saldo" value="Saldo" onfocus="" onblur="" >
 						<input type="submit" value="Simpan">
 					</form>
 					
