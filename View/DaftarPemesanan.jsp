@@ -3,6 +3,9 @@
     Created on : Apr 3, 2016, 6:49:42 PM
     Author     : Marcellina Fanny 
 --%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <html>
     <head>
         <title>Halaman Customer Service</title>     
@@ -78,11 +81,11 @@
                         <ul class="cl-effect-16">
                             <li><a href="CS.jsp" data-hover="HOME">HOME</a></li> 
                             <li><a class="active" href="DaftarPemesanan.jsp" data-hover="Daftar Pemesanan">Daftar Pemesanan</a></li>
+                            <li><a  href="UbahStatus.jsp" data-hover="Tambah Member">Update Status Member</a></li>							
                             <li><a href="TambahMember.jsp" data-hover="Tambah Member">Tambah Member</a></li>							
                             <li><a href="TambahSaldo.jsp" data-hover="Tambah Saldo">Tambah Saldo</a></li>
-                            <li><a href="HalamanUtama.jsp" data-hover="Logout">Logout</a></li>
+                            <li><a href="FilterLogout" data-hover="Logout">Logout</a></li>
                         </ul>
-
                     </nav>		
                 </div>
                 <div class="clearfix"></div>
@@ -119,17 +122,35 @@
                     <div class="col-md-6 top-grid">					 							
                         <div class="clearfix"> </div>
                     </div>
+                    <center>
+                        <h2> </h2>
+                        <h2> Pilih Tanggal </h2>
 
-                    <table style="width:100%">
-                        <tr><th> Tanggal</th>
-                            <th> Id Member </th>
-                            <th> Jam pelayanan </th>
-                            <th> Jenis Pelayanan </th>
-                            <th> Status</th>
 
-                        </tr>
-                    </table>               
+
+                        <form action="LihatDataPemesanan">
+                            <input type="date" name="tanggal" />
+                            <p class="submit"><input type="submit" name="commit" value="OK"></p>
+                        </form>
+                      </center>
+                    <body> 
+                       <table style="width:100%">
+                            <tr><td>Tanggal</td><td>${datapesanan.tanggalTreatment}</td></tr>
+                            <tr><td>Jam Pelayanan</td><td>${datapesanan.jam_Treatment}</td></tr>
+
+                            <tr><td>username member</td><td>${datapesanan.usernameM}</td></tr>
+                            <tr><td>jenis Treatment</td><td>${datapesanan.namaTreatment}</td></tr>
+                            <tr><td>Status</td><td>${datapesanan.status}</td></tr>
+
+
+
+
+                        </table>  
+                   
+                    </body>
                 </div>
+            </div>
+        </div>
 
-                </body>
-                </html>
+    </body>
+</html>
