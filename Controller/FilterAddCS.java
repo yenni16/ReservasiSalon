@@ -36,39 +36,51 @@ public class FilterAddCS extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
 
+        String nama = request.getParameter("nama");
         String username = request.getParameter("username");
         String pass = request.getParameter("pw");
-        String nama = request.getParameter("nama");
+
+        String role = request.getParameter("role");
         CS cs = new CS();
         cs.setUsername(username);
-cs.setPassword(pass);
-cs.setNamaCS(nama);
+        cs.setPassword(pass);
+        cs.setNamaCS(nama);
         if (cs.getUsername() == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("TambahMember.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("TambahCS.jsp");
             rd.forward(request, response);
-        } else if (cs.getPassword() == null || cs.getNamaCS()== null ) {
-            RequestDispatcher rd = request.getRequestDispatcher("TambahMember.jsp");
+        } else if (cs.getPassword() == null || cs.getNamaCS() == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("TambahCS.jsp");
             rd.forward(request, response);
         } else {
 //         INSERT DATA CS
- CS c = new CS();
-c.setUsername(username);
-c.setPassword(pass);
-c.setNamaCS(nama);
 
+            int s = 0;
+
+            Member mem = new Member();
+            mem.setNama_member(nama);
+            mem.setAlamat_member("");
+            mem.setUsernameM(username);
+            mem.setNohp_member("");
+
+            mem.setPasswordM(pass);
+            mem.setTgllahir_member("");
+            mem.setSaldo_member(s);
+
+            mem.setRole(role);
 
             Connection con = connection.Koneksi.open();
             Statement stat = con.createStatement();
-            String query2 = "insert into CS(USERNAME,PASSWORD,NAMACS) values"
-                    + "('" +c.getUsername() + "','" + c.getPassword() + "','" + c.getNamaCS()
-                    + "')";
+            String query2 = "insert into MEMBER(NAMA_MEMBER,ALAMAT,USERNAME,NO_HP,PASSWORD,TTL,SALDO,ROLE) values"
+                    + "('" + mem.getNama_member() + "','" + mem.getAlamat_member() + "','" + mem.getUsernameM()
+                    + "','" + mem.getNohp_member() + "','" + mem.getPasswordM() + "','" + mem.getTgllahir_member()
+                    + "','" + mem.getSaldo_member() + "','" + mem.getRole() + "')";
             stat.executeUpdate(query2);
-            out.println("<html><head></head><body><h2>Data CS berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
+            out.println("<html><head></head><body><h2>Data berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
 
             con.close();
-    }}
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
