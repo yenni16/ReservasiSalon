@@ -143,7 +143,7 @@
         <td><input type="text" name="status" value="" placeholder="Username"></td></tr>  
           <h2>
         </h2>
-  <input type="radio" name="status" value="Ubah"> Sudah dilayani<br>
+  <input type="radio" name="sudahdilayani" value="Ubah"> Sudah dilayani<br>
   <h2>
   </h2>
     <p class="submit"><input type="submit" name="commit" value="OK"></p>
