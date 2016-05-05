@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -54,24 +54,26 @@ public class FilterAddSaldo extends HttpServlet {
             re = stat.executeQuery(query1);
             int saldoAwal = 0;
             while(re.next()) {
-//                 saldoAwal = Integer.parseInt(re.getString("saldo"));
                 saldoAwal = Integer.parseInt(re.getString("saldo"));
             }
 
             int saldo2 = Integer.parseInt(saldo);
-//            int query2 = Integer.parseInt(re.getString("saldo"));
-
             saldo2 = saldo2 + saldoAwal;
 
             System.out.println(saldo2);
-//            System.out.println(saldo2+" ditambah "+query2);
+
             m.setSaldo_member(saldo2);
             String query3 = "update member set saldo=" + m.getSaldo_member() + " where username='" + username + "'";
             stat.executeUpdate(query3);
             out.println("<html><head></head><body><h2>Saldo berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
 
             con.close();
-        }
+    
+        
+        
+        
+        
+      }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
