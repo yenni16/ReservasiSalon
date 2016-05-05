@@ -8,10 +8,10 @@ public class Member {
     private String alamat_member;
     private String usernameM;
     private String passwordM;
-    private int id_member;
-    private int nohp_member;
+    private String nohp_member;
  private String tgllahir_member;
     private int saldo_member;
+    private String role;
     char namaSalah[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '@', '*', '_', '-'};
 
     
@@ -20,12 +20,12 @@ public class Member {
     }
 
     public void setNama_member(String nama_member) {
-              if (isNamaBenar(nama_member) == true) {
-            this.nama_member = nama_member;
-        } else {
-            this.nama_member = null;
-        }
-
+//              if (isNamaBenar(nama_member) == true) {
+//            this.nama_member = nama_member;
+//        } else {
+//            this.nama_member = null;
+//        }
+this.nama_member=nama_member;
     }
 
     
@@ -54,43 +54,19 @@ public class Member {
         this.passwordM = passwordM;
     }
 
-    public int getId_member() {
-        return id_member;
-    }
-
-    public void setId_member(int id_member) {
-        this.id_member = id_member;
-    }
-
-    public int getNohp_member() {
-        return nohp_member;
-    }
-
-    
-    public void setNohp_member(int nohp_member) {
-        this.nohp_member = nohp_member;
-    }
-
     public String getTgllahir_member() {
         return tgllahir_member;
     }
 
     public void setTgllahir_member(String tgllahir_member) {
-        if (isTTLBenar(tgllahir_member) == true) {
-            this.tgllahir_member = tgllahir_member;
-        } else {
-            this.tgllahir_member = null;
-        }
-
+//        if (isTTLBenar(tgllahir_member) == true) {
+//            this.tgllahir_member = tgllahir_member;
+//        } else {
+//            this.tgllahir_member = null;
+//        }
+this.tgllahir_member=tgllahir_member;
     }
 
-    public int getSaldo_member() {
-        return saldo_member;
-    }
-
-    public void setSaldo_member(int saldo_member) {
-        this.saldo_member = saldo_member;
-    }
 
     public boolean isNamaBenar(String in) {
         char cek;
@@ -131,6 +107,49 @@ public class Member {
             return false;
         }
         return true;
+    }
+
+
+    /**
+     * @return the nohp_member
+     */
+    public String getNohp_member() {
+        return nohp_member;
+    }
+
+    /**
+     * @param nohp_member the nohp_member to set
+     */
+    public void setNohp_member(String nohp_member) {
+        this.nohp_member = nohp_member;
+    }
+
+    /**
+     * @return the saldo_member
+     */
+    public int getSaldo_member() {
+        return saldo_member;
+    }
+
+    /**
+     * @param saldo_member the saldo_member to set
+     */
+    public void setSaldo_member(int saldo_member) {
+        this.saldo_member = saldo_member;
+    }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }
