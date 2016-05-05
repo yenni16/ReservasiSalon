@@ -39,9 +39,11 @@ public class DeleteCS extends HttpServlet {
         Connection con = connection.Koneksi.open();
         Statement stat = con.createStatement();
         if (usernameHapus.equalsIgnoreCase(null) == false) {
-            String hapus = "delete from CS where username='" + usernameHapus + "'";
+            String hapus = "delete from Member where username='" + usernameHapus + "'";
             stat.executeUpdate(hapus);
-            response.sendRedirect("ManageCS.jsp?hapus=" + usernameHapus);
+            response.sendRedirect("DeleteCS.jsp?hapus=" + usernameHapus);
+            out.println("<html><head></head><body><h2>Data CS berhasil dihapus....</h2><a href='CS.jsp'>Kembali</a></body></html>");
+
         } else {
             response.sendRedirect("ManageCS.jsp");
         }
