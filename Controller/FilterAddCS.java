@@ -42,14 +42,14 @@ public class FilterAddCS extends HttpServlet {
         String pass = request.getParameter("pw");
 
         String role = request.getParameter("role");
-        CS cs = new CS();
-        cs.setUsername(username);
-        cs.setPassword(pass);
-        cs.setNamaCS(nama);
-        if (cs.getUsername() == null) {
+Member m = new Member();
+        m.setUsernameM(username);
+        m.setPasswordM(pass);
+        m.setNama_member(nama);
+        if (m.getUsernameM() == null) {
             RequestDispatcher rd = request.getRequestDispatcher("TambahCS.jsp");
             rd.forward(request, response);
-        } else if (cs.getPassword() == null || cs.getNamaCS() == null) {
+        } else if (m.getPasswordM() == null || m.getNama_member() == null) {
             RequestDispatcher rd = request.getRequestDispatcher("TambahCS.jsp");
             rd.forward(request, response);
         } else {
