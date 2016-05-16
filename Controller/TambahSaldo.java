@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author YENNI
  */
-public class FilterAddSaldo extends HttpServlet {
+public class TambahSaldo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,46 +34,44 @@ public class FilterAddSaldo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
         ResultSet re;
 
-        String username = request.getParameter("username");
-        String saldo = request.getParameter("saldo");
+        String user = request.getParameter("username");
+        String saldom = request.getParameter("saldo");
         Member m = new Member();
 
-        if (username == null || saldo == null) {
+        if (user == null || saldom == null) {
             RequestDispatcher rd = request.getRequestDispatcher("TambahSaldo.jsp");
             rd.forward(request, response);
 
         } else {
             Connection con = connection.Koneksi.open();
             Statement stat = con.createStatement();
-            String query1 = "select saldo from member where username='" + username + "'";
+            String query1 = "select saldo from member where username='" + user + "'";
             re = stat.executeQuery(query1);
             int saldoAwal = 0;
             while(re.next()) {
                 saldoAwal = Integer.parseInt(re.getString("saldo"));
             }
 
-            int saldo2 = Integer.parseInt(saldo);
+            int saldo2 = Integer.parseInt(saldom);
             saldo2 = saldo2 + saldoAwal;
+
 
             System.out.println(saldo2);
 
             m.setSaldo_member(saldo2);
-            String query3 = "update member set saldo=" + m.getSaldo_member() + " where username='" + username + "'";
+            String query3 = "update member set saldo=" + m.getSaldo_member() + " where username='" + user + "'";
             stat.executeUpdate(query3);
             out.println("<html><head></head><body><h2>Saldo berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
-
-            con.close();
-    
+stat.close();
+con.close();    
         
-        
-        
-        
-      }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -90,13 +88,11 @@ public class FilterAddSaldo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            try {
-                processRequest(request, response);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TambahSaldo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TambahSaldo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -113,13 +109,11 @@ public class FilterAddSaldo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            try {
-                processRequest(request, response);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TambahSaldo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(FilterAddSaldo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TambahSaldo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
