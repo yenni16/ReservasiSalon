@@ -76,7 +76,7 @@ Member m = new Member();
                     + "','" + mem.getNohp_member() + "','" + mem.getPasswordM() + "','" + mem.getTgllahir_member()
                     + "','" + mem.getSaldo_member() + "','" + mem.getRole() + "')";
             stat.executeUpdate(query2);
-            out.println("<html><head></head><body><h2>Data berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
+            out.println("<html><head></head><body><h2>Data berhasil ditambahkan....</h2><a href='Owner.jsp'>Kembali</a></body></html>");
 
             con.close();
         }
