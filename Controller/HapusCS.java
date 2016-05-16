@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author YENNI
  */
-public class DeleteCS extends HttpServlet {
+public class HapusCS extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,17 +36,19 @@ public class DeleteCS extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String usernameHapus = request.getParameter("hapus");
+        String usernameHapus = request.getParameter("uname");
         Connection con = connection.Koneksi.open();
         Statement stat = con.createStatement();
         if (usernameHapus.equalsIgnoreCase(null) == false) {
             String hapus = "delete from Member where username='" + usernameHapus + "'";
             stat.executeUpdate(hapus);
-            response.sendRedirect("DeleteCS.jsp?hapus=" + usernameHapus);
-            out.println("<html><head></head><body><h2>Data CS berhasil dihapus....</h2><a href='CS.jsp'>Kembali</a></body></html>");
 
+            out.println("<html><head></head><body><h2>Data berhasil diHapus....</h2><a href='Owner.jsp'>Kembali</a></body></html>");
+con.close();
         } else {
-            response.sendRedirect("ManageCS.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("HapusCS.jsp");
+            rd.forward(request, response);
+    
         }
     }
 
@@ -65,9 +68,9 @@ public class DeleteCS extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DeleteCS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HapusCS.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(DeleteCS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HapusCS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,9 +89,9 @@ public class DeleteCS extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DeleteCS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HapusCS.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(DeleteCS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HapusCS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
