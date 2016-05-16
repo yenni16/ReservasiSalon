@@ -16,6 +16,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspException;
 
 /**
  *
@@ -34,10 +35,10 @@ public class FilterAddMember extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException, JspException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+try{
         String nama = request.getParameter("nama");
         String alamat = request.getParameter("alamat");
         String username = request.getParameter("username");
@@ -80,11 +81,15 @@ mem.setRole(status);
             out.println("<html><head></head><body><h2>Data berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
 
             con.close();
-
+        }
 //            RequestDispatcher rd = request.getRequestDispatcher("CS.jsp");
             //          rd.forward(request, response);
         }
-
+catch (java.io.IOException ex) 
+        {
+            throw new JspException("Error in NewTagHandler tag", ex);
+        }
+        
 
     }
 
@@ -103,7 +108,11 @@ mem.setRole(status);
             throws ServletException, IOException {
         try {
             try {
-                processRequest(request, response);
+                try {
+                    processRequest(request, response);
+                } catch (JspException ex) {
+                    Logger.getLogger(FilterAddMember.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(FilterAddMember.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -126,7 +135,11 @@ mem.setRole(status);
             throws ServletException, IOException {
         try {
             try {
-                processRequest(request, response);
+                try {
+                    processRequest(request, response);
+                } catch (JspException ex) {
+                    Logger.getLogger(FilterAddMember.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(FilterAddMember.class.getName()).log(Level.SEVERE, null, ex);
             }
