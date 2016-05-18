@@ -3,6 +3,8 @@
     Created on : Apr 3, 2016, 6:49:42 PM
     Author     : Marcellina Fanny 
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.DataPesanan"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -81,7 +83,7 @@
                         <ul class="cl-effect-16">
                             <li><a href="CS.jsp" data-hover="HOME">HOME</a></li> 
                             <li><a class="active" href="DaftarPemesanan.jsp" data-hover="Daftar Pemesanan">Daftar Pemesanan</a></li>
-                            <li><a  href="UbahStatus.jsp" data-hover="Tambah Member">Update Status Member</a></li>							
+                            <li><a  href="UbahStatus.jsp" data-hover="Update Status Member">Update Status Member</a></li>							
                             <li><a href="TambahMember.jsp" data-hover="Tambah Member">Tambah Member</a></li>							
                             <li><a href="TambahSaldo.jsp" data-hover="Tambah Saldo">Tambah Saldo</a></li>
                             <li><a href="FilterLogout" data-hover="Logout">Logout</a></li>
@@ -114,38 +116,57 @@
                 </script>
             </div>
         </div>
+  <script>
+            $(document).ready(function() {
+                $("#datepicker").datepicker();
+            });
+        </script>
+            <center>
+        <h2> </h2>
 
-        <div class="products">
-            <div class="container">
-                <h3 class="tittle">Daftar Pesanan</h3>
-                <div class="tip-main">
-                    <div class="col-md-6 top-grid">					 							
-                        <div class="clearfix"> </div>
-                    </div>
-                    <center>
-                        <h2> </h2>
-                        <h2> Pilih Tanggal </h2>
+        <h2> Pilih Tanggal </h2>
 
 
 
-                        <form action="LihatDataPemesanan">
-                            <input type="date" name="tanggal" />
-                            <p class="submit"><input type="submit" name="commit" value="OK"></p>
-                        </form>
-                      </center>
-                    <body> 
-                       <table style="width:100%">
-                            <tr><td>Tanggal</td><td>${datapesanan.tanggalTreatment}</td></tr>
-                            <tr><td>Jam Pelayanan</td><td>${datapesanan.jam_Treatment}</td></tr>
+        <form action="LihatDataPemesananCS">
+            <input type="date" name="tanggal" />
+            <p class="submit"><input type="submit" name="commit" value="OK"></p>
+        </form>
+         <table>
+            <thead>
 
-                            <tr><td>username member</td><td>${datapesanan.usernameM}</td></tr>
-                            <tr><td>jenis Treatment</td><td>${datapesanan.namaTreatment}</td></tr>
-                            <tr><td>Status</td><td>${datapesanan.status}</td></tr>
+              <th>Tanggal</th>
+              <th>Jam</th>
+              <th>Username</th>
+              <th>Nama Treatment</th>
+              <th>Status</th>
+               </thead>
+            <%
+            if(request.getAttribute("dataList") != null){
+                ArrayList<DataPesanan> dp = (ArrayList<DataPesanan>) request.getAttribute("dataList");
+                for (int i =0; i< dp.size(); i++){
+                DataPesanan d = dp.get(i);
+                
+                
+                
+            %>
+            <tr>
 
-
-
-
-                        </table>  
+              <th><%= d.getTanggalTreatment() %> </th>
+              <th><%= d.getJamTreatment() %></th>
+              <th><%= d.getUsernameMember() %> </th>
+              <th><%= d.getKodeTreatment() %></th>
+              <th><%= d.getStatus() %></th>
+              
+            </tr>
+        <%
+        }        }
+%>
+        
+         </table>  
+    </center>
+      
+                    </body>
                    
                     </body>
                 </div>
