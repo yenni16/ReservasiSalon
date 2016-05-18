@@ -18,7 +18,7 @@
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <link href="css/styleReservasi.css" rel='stylesheet' type='text/css' />
 
-        <link href="css/style.css" rel='stylesheet' type='text/css' />	
+        <link href="css/style_1.css" rel='stylesheet' type='text/css' />	
 
         <script src="js/jquery.min.js"></script>
         <!---- start-smoth-scrolling---->
@@ -44,7 +44,7 @@
                     <div class="logo">
                         <h1>Salon Parama</h1>
                     </div>
-                    <div class="phone"><i class="glyphicon glyphicon-phone"></i><p> 7758 2068 892</p>
+                    <div class="phone"><i class="glyphicon glyphicon-phone"></i><p>081804005541</p>
                         <h5>Hubungi kami</h5>
                     </div>
                     <div class="clearfix"></div>
@@ -105,41 +105,30 @@
 
         <div class="banner">
             <div class="login">
-                <center>              
+                <center>   
+                    <br>
+                    <!-- session buat nampilin saldo (Yenni) -->
                     <%
 
                         String s = (String) session.getAttribute("username");
-                        ResultSet re;
-
-                        Connection con = connection.Koneksi.open();
-                        Statement stat = con.createStatement();
-
-                        
-            String query1 = "select saldo from member where username='" + s + "'";
-            re = stat.executeQuery(query1);
-            int saldo = 0;
-            while(re.next()) {
-                saldo = Integer.parseInt(re.getString("saldo"));
-            }
-            
-
-                        con.close();
+                     
+                       
 
                     %>
-                    <h1 style = "color: black;">Saldo = <%=saldo%> </h1></center></div>
+                    <h1 style = "color: black;">Saldo = <%=session.getAttribute("saldo") %> </h1></center></div>
             <div class="container">
                 <div class="banner-top">
 
                     <h1>Silahkan Reservasi Online </h1>
                     <div class="banner-bottom">
-                        <form>
+                        <form action="./Reserv">
 
                             <div class="bnr-one">
                                 <div class="bnr-left">
                                     <p>Pilih Tanggal</p>
                                 </div>
                                 <div class="bnr-right">
-                                    <input class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                    <input class="date" name="tanggal" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }" required=>
                                 </div>
@@ -151,7 +140,7 @@
                                     <p>Jam Pelayanan</p>
                                 </div>
                                 <div class="bnr-right">
-                                    <input type="text" placeholder="Jam Treatment" required=" ">
+                                    <input type="text" name="jamT" placeholder="Jam Treatment" required=" ">
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -161,21 +150,10 @@
                                     <p>Username Member</p>
                                 </div>
                                 <div class="bnr-right">
-                                    <input type="text" placeholder="Username member" required=" " value="<%=s%>">
+                                    <input type="text" name="username" placeholder="Username member" required=" " value="<%=s%>">
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-
-                            <div class="bnr-one">
-                                <div class="bnr-left">
-                                    <p>Id Treatment</p>
-                                </div>
-                                <div class="bnr-right">
-                                    <input type="text" placeholder="Id Treatment" required=" ">
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-
 
 
                             <div class="bnr-one">
@@ -183,19 +161,19 @@
                                     <p>Pelayanan</p>
                                 </div>
                                 <div class="bnr-right">
-                                    <select>
+                                    <select name="jenisT">
                                         <option  class="rm" value="volvo">Pilih</option>
-                                        <option  class="rm" value="saab">Rias Pengantin</option>
-                                        <option  class="rm" value="opel">Rias Wisuda</option>
-                                        <option  class="rm" value="audi">Rias Pengantin</option>
-                                        <option  class="rm" value="audi">Potong Rambut</option>
-                                        <option  class="rm" value="audi">Creambath</option>
-                                        <option  class="rm" value="audi">Cuci Blow</option>
-                                        <option  class="rm" value="audi">Hair Mask</option>
-                                        <option  class="rm" value="audi">Rebonding</option>
-                                        <option  class="rm" value="audi">Toning</option>
-                                        <option  class="rm" value="audi">Colouring</option>
-                                        <option  class="rm" value="audi">Bleaching</option>
+                                        <option  class="rm" value="Rias Pengantin">Rias Pengantin</option>
+                                        <option  class="rm" value="Rias Wisuda">Rias Wisuda</option>
+                                        <option  class="rm" value="Rias Pengantin">Rias Pengantin</option>
+                                        <option  class="rm" value="Potong Rambut">Potong Rambut</option>
+                                        <option  class="rm" value="Creambath">Creambath</option>
+                                        <option  class="rm" value="Cuci Blow">Cuci Blow</option>
+                                        <option  class="rm" value="Hair Mask">Hair Mask</option>
+                                        <option  class="rm" value="Rebonding">Rebonding</option>
+                                        <option  class="rm" value="Toning">Toning</option>
+                                        <option  class="rm" value="Colouring">Colouring</option>
+                                        <option  class="rm" value="Bleaching">Bleaching</option>
                                     </select>
                                 </div>
                                 <div class="clearfix"></div>
