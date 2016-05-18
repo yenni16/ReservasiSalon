@@ -50,7 +50,7 @@ $(".swipebox").swipebox();
                     <div class="logo">
                         <h1>Salon Parama</h1>
                     </div>
-                    <div class="phone"><i class="glyphicon glyphicon-phone"></i><p> 7758 2068 892</p>
+                    <div class="phone"><i class="glyphicon glyphicon-phone"></i><p>081804005541</p>
                         <h5>Hubungi kami</h5>
                     </div>
                     <div class="clearfix"></div>
@@ -126,9 +126,9 @@ $(".swipebox").swipebox();
                 <div class="Regisration-head">
                     <h2><span></span>Tambah Saldo</h2>
                 </div>
-                                        <form action="FilterAddSaldo">
+                                        <form action="./TambahSaldo">
                                                 <input type="text" name="username" value="Username" onfocus="" onblur="" >
-                                                <input type="text" name="Saldo" value="Saldo" onfocus="" onblur="" >
+                                                <input type="text" name="saldo" value="Saldo" onfocus="" onblur="" >
 						<input type="submit" value="Simpan">
 					</form>
 					
