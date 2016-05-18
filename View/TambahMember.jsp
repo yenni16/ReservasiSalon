@@ -48,7 +48,7 @@
                     <div class="logo">
                         <h1>Salon Parama</h1>
                     </div>
-                    <div class="phone"><i class="glyphicon glyphicon-phone"></i><p> 7758 2068 892</p>
+                    <div class="phone"><i class="glyphicon glyphicon-phone"></i><p>081804005541</p>
                         <h5>Hubungi kami</h5>
                     </div>
                     <div class="clearfix"></div>
