@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Salon Parama</title>
+        <title>Parama Salon</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Beautyou  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -132,11 +132,11 @@
                 <td>
                     <img src="images/logosalon.jpg" style="width:200px;height:200px;">
                 </td><td>
-                    <form action="index.html">
+                    <form action="./FilterLogin">
                         <table>
                             <tr>
-                                <td>Username</td><td><input type="text" name="login" value="" placeholder="Username"></td></tr>
-                            <tr><td>Password</td><td><input type="password" name="password" value="" placeholder="Password"></td>
+                                <td>Username</td><td><input type="text" name="userN" value="" placeholder="Username"></td></tr>
+                            <tr><td>Password</td><td><input type="password" name="passN" value="" placeholder="Password"></td>
                             </tr>
                         </table>
                         <p class="submit"><input type="submit" name="commit" value="Login"></p>
