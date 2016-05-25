@@ -45,7 +45,7 @@ public class TambahSaldo extends HttpServlet {
         Member m = new Member();
 
         if (user == null || saldom == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("TambahSaldo.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("errorPageTambahSaldo.jsp");
             rd.forward(request, response);
 
         } else {
@@ -67,9 +67,13 @@ public class TambahSaldo extends HttpServlet {
             m.setSaldo_member(saldo2);
             String query3 = "update member set saldo=" + m.getSaldo_member() + " where username='" + user + "'";
             stat.executeUpdate(query3);
-            out.println("<html><head></head><body><h2>Saldo berhasil ditambahkan....</h2><a href='CS.jsp'>Kembali</a></body></html>");
-stat.close();
-con.close();    
+    RequestDispatcher rd = request.getRequestDispatcher("BerhasilTambahSaldo.jsp");
+            rd.forward(request, response);
+
+ out.close();
+            stat.close();
+            con.close();
+     
         
         }
     }
