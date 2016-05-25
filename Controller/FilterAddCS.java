@@ -47,10 +47,10 @@ Member m = new Member();
         m.setPasswordM(pass);
         m.setNama_member(nama);
         if (m.getUsernameM() == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("TambahCS.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("errorPageTambahCS.jsp");
             rd.forward(request, response);
         } else if (m.getPasswordM() == null || m.getNama_member() == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("TambahCS.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("errorPageTambahCS.jsp");
             rd.forward(request, response);
         } else {
 //         INSERT DATA CS
@@ -76,9 +76,12 @@ Member m = new Member();
                     + "','" + mem.getNohp_member() + "','" + mem.getPasswordM() + "','" + mem.getTgllahir_member()
                     + "','" + mem.getSaldo_member() + "','" + mem.getRole() + "')";
             stat.executeUpdate(query2);
-            out.println("<html><head></head><body><h2>Data berhasil ditambahkan....</h2><a href='Owner.jsp'>Kembali</a></body></html>");
-
+            RequestDispatcher rd = request.getRequestDispatcher("berhasilAddCS.jsp");
+            rd.forward(request, response);
+ out.close();
+            stat.close();
             con.close();
+  
         }
     }
 
