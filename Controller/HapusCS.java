@@ -43,10 +43,14 @@ public class HapusCS extends HttpServlet {
             String hapus = "delete from Member where username='" + usernameHapus + "'";
             stat.executeUpdate(hapus);
 
-            out.println("<html><head></head><body><h2>Data berhasil diHapus....</h2><a href='Owner.jsp'>Kembali</a></body></html>");
-con.close();
+                   RequestDispatcher rd = request.getRequestDispatcher("berhasilDeleteCS.jsp");
+            rd.forward(request, response);
+  out.close();
+            stat.close();
+            con.close();
+  
         } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("HapusCS.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("errorPageDeleteCS.jsp");
             rd.forward(request, response);
     
         }
